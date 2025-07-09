@@ -47,13 +47,13 @@ const HomeScreen = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-white shadow-sm px-4 py-3">
+      <div className="bg-card shadow-sm px-4 py-3 border-b">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold text-green-800">Project Kisaan</h1>
-            <p className="text-sm text-gray-600">आपका कृषि सहायक</p>
+            <h1 className="text-xl font-bold text-green-600">Project Kisaan</h1>
+            <p className="text-sm text-muted-foreground">आपका कृषि सहायक</p>
           </div>
           <div className="flex items-center gap-2">
             {isOffline ? (
@@ -75,8 +75,8 @@ const HomeScreen = () => {
         {/* Voice Input Section */}
         <Card className="p-6 text-center farmer-shadow">
           <div className="mb-4">
-            <h2 className="text-lg font-semibold text-gray-800 mb-2">मैं आपकी कैसे मदद कर सकता हूं?</h2>
-            <p className="text-sm text-gray-600">नीचे दिए गए बटन को दबाकर बोलें</p>
+            <h2 className="text-lg font-semibold text-foreground mb-2">मैं आपकी कैसे मदद कर सकता हूं?</h2>
+            <p className="text-sm text-muted-foreground">नीचे दिए गए बटन को दबाकर बोलें</p>
           </div>
           
           <Button
@@ -90,7 +90,7 @@ const HomeScreen = () => {
           
           {isListening && (
             <div className="mt-4 text-center">
-              <div className="inline-flex items-center gap-2 bg-red-100 px-4 py-2 rounded-full">
+              <div className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full border border-red-200">
                 <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
                 <span className="text-red-700 font-medium">सुन रहा हूं...</span>
               </div>
@@ -102,12 +102,12 @@ const HomeScreen = () => {
         <div className="grid grid-cols-2 gap-4">
           {mainFeatures.map((feature, index) => (
             <Link key={index} to={feature.path}>
-              <Card className="p-4 text-center hover:shadow-lg transition-all duration-300 farmer-shadow">
+              <Card className="p-4 text-center hover:shadow-lg transition-all duration-300 farmer-shadow border hover:border-green-200">
                 <div className={`w-12 h-12 ${feature.color} rounded-full flex items-center justify-center mx-auto mb-3`}>
                   <feature.icon size={24} className="text-white" />
                 </div>
-                <h3 className="font-semibold text-gray-800 text-sm mb-1">{feature.title}</h3>
-                <p className="text-xs text-gray-600">{feature.subtitle}</p>
+                <h3 className="font-semibold text-foreground text-sm mb-1">{feature.title}</h3>
+                <p className="text-xs text-muted-foreground">{feature.subtitle}</p>
               </Card>
             </Link>
           ))}
@@ -115,7 +115,7 @@ const HomeScreen = () => {
 
         {/* Quick Actions */}
         <Card className="p-4 farmer-shadow">
-          <h3 className="font-semibold text-gray-800 mb-3">त्वरित कार्य</h3>
+          <h3 className="font-semibold text-foreground mb-3">त्वरित कार्य</h3>
           <div className="space-y-2">
             <Link to="/community-hub">
               <Button variant="outline" className="w-full justify-start">
@@ -131,7 +131,7 @@ const HomeScreen = () => {
         </Card>
 
         {/* Bottom Navigation */}
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t shadow-lg">
+        <div className="fixed bottom-0 left-0 right-0 bg-card border-t shadow-lg">
           <div className="grid grid-cols-4 py-2">
             <Button variant="ghost" className="flex-col h-16 text-xs">
               <Building size={20} />
