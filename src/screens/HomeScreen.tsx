@@ -1,14 +1,14 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Mic, Camera, TrendingUp, Building, Users, MessageCircle, Wifi, WifiOff } from "lucide-react";
+import { Camera, TrendingUp, Building, Users, MessageCircle, Wifi, WifiOff } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageSelector from "@/components/LanguageSelector";
+import VoiceInput from "@/components/VoiceInput";
 
 const HomeScreen = () => {
-  const [isListening, setIsListening] = useState(false);
   const [isOffline, setIsOffline] = useState(false);
   const { t, isLoading } = useLanguage();
 
@@ -43,11 +43,6 @@ const HomeScreen = () => {
     }
   ];
 
-  const toggleListening = () => {
-    setIsListening(!isListening);
-    // Simulate voice recognition
-    setTimeout(() => setIsListening(false), 3000);
-  };
 
   if (isLoading) {
     return (
@@ -88,30 +83,7 @@ const HomeScreen = () => {
 
       <div className="p-4 space-y-6">
         {/* Voice Input Section */}
-        <Card className="p-6 text-center farmer-shadow">
-          <div className="mb-4">
-            <h2 className="text-lg font-semibold text-foreground mb-2">{t('voicePrompt')}</h2>
-            <p className="text-sm text-muted-foreground">{t('voiceSubtitle')}</p>
-          </div>
-          
-          <Button
-            onClick={toggleListening}
-            className={`w-24 h-24 rounded-full ${
-              isListening ? 'bg-red-500 hover:bg-red-600 voice-ripple' : 'bg-green-500 hover:bg-green-600'
-            } transition-all duration-300 farmer-shadow`}
-          >
-            <Mic size={32} className="text-white" />
-          </Button>
-          
-          {isListening && (
-            <div className="mt-4 text-center">
-              <div className="inline-flex items-center gap-2 bg-red-50 px-4 py-2 rounded-full border border-red-200">
-                <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-                <span className="text-red-700 font-medium">{t('listening')}</span>
-              </div>
-            </div>
-          )}
-        </Card>
+        <VoiceInput />
 
         {/* Main Features Grid */}
         <div className="grid grid-cols-2 gap-4">
