@@ -145,25 +145,33 @@ const VoiceInput: React.FC<VoiceInputProps> = ({ onResponse }) => {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto p-6 bg-card rounded-lg border">
-      <div className="flex items-center justify-center mb-4">
+    <div className="w-full mx-auto p-6 bg-card rounded-lg border shadow-lg">
+      <div className="text-center mb-6">
+        <h2 className="text-lg font-semibold text-foreground mb-2">
+          {currentLanguage === 'hi' ? 'AI सहायक से बात करें' : 'Talk to AI Assistant'}
+        </h2>
+        <p className="text-sm text-muted-foreground">
+          {currentLanguage === 'hi' ? 'माइक्रोफोन दबाएं और अपना सवाल पूछें' : 'Press microphone and ask your question'}
+        </p>
+      </div>
+
+      <div className="flex items-center justify-center mb-6">
         <Button
           onClick={isListening ? stopListening : startListening}
           disabled={isProcessing}
-          size="lg"
-          className={`relative ${
+          className={`w-20 h-20 rounded-full text-white shadow-lg transition-all duration-300 ${
             isListening 
-              ? 'bg-destructive hover:bg-destructive/90' 
-              : 'bg-primary hover:bg-primary/90'
-          }`}
+              ? 'bg-red-500 hover:bg-red-600 animate-pulse' 
+              : 'bg-green-500 hover:bg-green-600'
+          } ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}`}
         >
           {isListening ? (
-            <MicOff className="w-6 h-6" />
+            <MicOff className="w-8 h-8" />
           ) : (
-            <Mic className="w-6 h-6" />
+            <Mic className="w-8 h-8" />
           )}
           {isListening && (
-            <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full animate-pulse" />
+            <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-600 rounded-full animate-ping" />
           )}
         </Button>
       </div>
